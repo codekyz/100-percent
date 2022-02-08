@@ -1,5 +1,5 @@
 {
-  "homepage": "https://codekyz.github.io/100-percent",
+  "homepage": "https://codekyz.github.io/100-percent/",
   "name": "100-percent",
   "version": "0.1.0",
   "private": true,
@@ -7,7 +7,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "core-js": "^3.6.5",
