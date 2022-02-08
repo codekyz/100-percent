@@ -4,18 +4,18 @@
     >
       <div class="inputs">
         <input type="text" 
-          v-model="newItem.newItem"
+          v-model="newItems.newItem"
           class="todo-input"
           :placeholder=item
         >
         <input type="text" 
-          v-model="newItem.newPercent"
+          v-model="newItems.newPercent"
           class="todo-input"
           :placeholder=percent
         >
         <button 
           class="todo-update-btn"
-          @click="updateItem"
+          @click="updateItem(this.item)"
         >
           수정
         </button>
@@ -24,26 +24,26 @@
 </template>
 
 <script>
-import { reactive } from '@vue/reactivity';
+import { reactive } from 'vue';
 export default {
     props:{
         item: String, 
         percent: Number,
     },
     setup() {
-        const newItem = reactive({
-            newItem: '',
-            newPercent: '',
-            preItem: '',
-        });
+      const newItems = reactive({
+          newItem: '',
+          newPercent: '',
+      });
 
-        return {
-            newItem,
-        };
+      return {
+          newItems,
+      };
     },
     methods: {
-        updateItem() {
-            this.$store.commit("updateOneItem", this.newItem);
+        updateItem(item) {
+            const newItems = this.newItems;
+            this.$store.commit("updateOneItem", { item, newItems });
         }
     }
 }

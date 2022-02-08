@@ -36,11 +36,10 @@ export default createStore({
             state.todoItems.splice(payload.index, 1);
         },
         updateOneItem(state, payload) {
-            console.log(payload);
-            localStorage.removeItem(payload.preItem);
+            localStorage.removeItem(payload.item);
             state.todoItems.splice(payload.index, 1);
-            const obj = { percent: payload.newPercent, item: payload.newItem };
-            localStorage.setItem(payload.newItem, JSON.stringify(obj));
+            const obj = { percent: payload.newItems.newPercent, item: payload.newItems.newItem };
+            localStorage.setItem(payload.newItems.newItem, JSON.stringify(obj));
             state.todoItems.push(obj);
         }
 
