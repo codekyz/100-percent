@@ -1,7 +1,7 @@
 <template>
-  <header>
+  <header class="header">
     <img src="../assets/logo.png" />
-    <nav>
+    <nav class="nav">
       <router-link to="/todo">Todo</router-link>
       <router-link to="/timer">Timer</router-link>
     </nav>
@@ -13,14 +13,14 @@ export default {};
 </script>
 
 <style scoped>
-header {
+.header {
   width: 100%;
   display: flex;
   align-items: flex-end;
   border-bottom: 1px solid #666;
 }
 
-nav {
+.nav {
   display: flex;
 }
 

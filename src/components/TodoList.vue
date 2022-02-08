@@ -1,36 +1,88 @@
 <template>
-  <article>
-    <section v-for="todoitem in this.todoItems" v-bind:key="todoitem.item">
+  <article class="wrraper">
+    
+    <section
+      class="todo-card"
+      v-for="(todoitem, index) in this.todoItems"
+      v-bind:key="todoitem.item"
+    >
       <div class="content">
         {{ todoitem.item }}
         <div class="control">
-          <input type="text" value="56" />
-          <p>&#10006;</p>
+          {{ todoitem.percent }}%
+          <p 
+            class="todo-btn"
+            @click="(editItem = todoitem) && (isActive = !isActive)"
+          >
+          &#9998;
+          </p>
+          <p 
+            class="todo-btn"
+            @click="removeTodo(todoitem, index)"  
+          >
+          &#10006;
+          </p>
         </div>
       </div>
-      <div class="progress_grey">
-        <div class="progress_color">56%</div>
+      <div class="progress-grey">
+        <div 
+          :class="{ 'progress-color': todoitem.percent !== 0 }" 
+          :style="{ width: todoitem.percent + '%' }">
+          {{ todoitem.percent }}%
+        </div>
       </div>
+      <edit 
+        v-if="todoitem.item === editItem.item"
+        :class="{ 'display-none': isActive }"
+        v-bind:="editItem"
+      />
     </section>
   </article>
 </template>
 
 <script>
+import Edit from './Edit.vue';
+import { ref } from 'vue';
+
 export default {
+  setup() {
+    const isActive = ref(true);
+    const editItem = ref({});
+
+    return {
+      isActive,
+      editItem,
+    }
+  },
   computed: {
     todoItems() {
       return this.$store.getters.storedTodoItem;
     },
   },
+  methods: {
+    removeTodo(todoItem, index) {
+      this.$store.commit("removeOneItem", { todoItem, index });
+    },
+  },
+  components: {
+    Edit,
+  }
 };
 </script>
 
 <style scoped>
-section {
+.wrraper {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-card {
   display: flex;
   flex-direction: column;
   padding: 16px;
-  border: 1px solid #333;
+  border: 1px solid #999;
+  border-radius: 5px;
+  box-shadow: #ddd 0 3px 3px;
   margin: 16px;
 }
 
@@ -38,29 +90,34 @@ section {
   display: flex;
   align-items: center;
   margin-bottom: 16px;
+  font-size: 1rem;
 }
 
 .control {
   display: flex;
   align-items: center;
   margin-left: auto;
+  font-weight: 800;
 }
 
-input {
-  width: 3rem;
-  padding: 0.5rem;
-  margin-right: 8px;
+.todo-btn {
+  margin-left: 16px;
+  cursor: pointer;
 }
 
-.progress_grey {
+.progress-grey {
   background-color: #eee;
   width: 100%;
 }
 
-.progress_color {
+.progress-color {
   background-color: #333;
-  width: 56%;
   color: #eee;
   text-align: center;
 }
+
+.display-none {
+  display: none;
+}
+
 </style>

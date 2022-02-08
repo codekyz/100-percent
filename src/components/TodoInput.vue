@@ -1,15 +1,23 @@
 <template>
-  <section>
-    <input type="text" v-model="newTodoItem" placeholder="할일을 적어주세요" />
-    <button @click="addTodo">추가</button>
+  <section class="add-todo">
+    <input
+      class="todo-input"
+      type="text"
+      v-model="newTodoItem"
+      placeholder="할일을 적어주세요"
+    />
+    <button class="todo-add-btn" @click="addTodo">추가</button>
   </section>
 </template>
 
 <script>
+import { ref } from 'vue';
 export default {
-  data() {
+  setup() {
+    const newTodoItem = ref('');
+
     return {
-      newTodoItem: "",
+      newTodoItem,
     };
   },
 
@@ -30,21 +38,22 @@ export default {
 </script>
 
 <style scoped>
-section {
+.add-todo {
   width: 100%;
   padding: 16px;
   display: flex;
   justify-content: center;
+  margin-top: 16px;
 }
 
-input {
+.todo-input {
   width: 80%;
   padding: 16px;
   border: none;
   background-color: #eee;
 }
 
-button {
+.todo-add-btn {
   width: 20%;
   padding: 16px;
   border: none;

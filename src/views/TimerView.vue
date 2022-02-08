@@ -1,5 +1,7 @@
 <template>
-  <timer />
+  <div>
+    <timer />
+  </div>
 </template>
 
 <script>

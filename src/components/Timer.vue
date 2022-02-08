@@ -1,12 +1,12 @@
 <template>
-  <section>
+  <section class="timer">
     <div class="time">
-      <h1>00:00:00</h1>
+      <p class="time-stamp">00:00:00</p>
     </div>
     <div class="buttons">
-      <button>시작</button>
-      <button>일시정지</button>
-      <button>중지</button>
+      <button class="btn">시작</button>
+      <button class="btn">일시정지</button>
+      <button class="btn">중지</button>
     </div>
   </section>
 </template>
@@ -16,7 +16,7 @@ export default {};
 </script>
 
 <style scoped>
-section {
+.timer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,17 +26,22 @@ section {
   margin-top: 80px;
 }
 
+.time-stamp {
+  font-weight: 800;
+  font-size: 2rem;
+}
+
 .buttons {
   margin-top: 50px;
 }
 
 @media screen and (min-width: 800px) {
-  h1 {
+  .time-stamp {
     font-size: 3rem;
   }
 }
 
-button {
+.btn {
   border: 1px solid #666;
   padding: 8px;
   margin: 8px;

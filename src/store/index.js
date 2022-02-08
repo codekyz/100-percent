@@ -30,6 +30,18 @@ export default createStore({
             const obj = { percent: 0, item: payload };
             localStorage.setItem(payload, JSON.stringify(obj));
             state.todoItems.push(obj);
+        },
+        removeOneItem(state, payload) {
+            localStorage.removeItem(payload.todoItem.item);
+            state.todoItems.splice(payload.index, 1);
+        },
+        updateOneItem(state, payload) {
+            console.log(payload);
+            localStorage.removeItem(payload.preItem);
+            state.todoItems.splice(payload.index, 1);
+            const obj = { percent: payload.newPercent, item: payload.newItem };
+            localStorage.setItem(payload.newItem, JSON.stringify(obj));
+            state.todoItems.push(obj);
         }
 
     },
