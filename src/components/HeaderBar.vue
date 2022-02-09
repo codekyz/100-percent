@@ -2,8 +2,7 @@
   <header class="header">
     <img src="../assets/logo.png" />
     <nav class="nav">
-      <router-link to="/todo">Todo</router-link>
-      <router-link to="/timer">Timer</router-link>
+      <a>login</a>
     </nav>
   </header>
 </template>
@@ -17,7 +16,7 @@ export default {};
   width: 100%;
   display: flex;
   align-items: flex-end;
-  border-bottom: 1px solid #666;
+  justify-content: center;
 }
 
 .nav {
@@ -26,7 +25,7 @@ export default {};
 
 a {
   margin-right: 10px;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 img {
@@ -37,9 +36,10 @@ img {
 @media screen and (max-width: 800px) {
   img {
     width: 20%;
+    margin: 20px 10px 0 10px;
   }
   a {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 }
 </style>

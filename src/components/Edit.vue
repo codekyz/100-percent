@@ -3,19 +3,16 @@
       class="todo-update"
     >
       <div class="inputs">
+        <p>
+          {{ this.newItems.newItem }}
+        </p>
         <input type="text" 
-          v-model="newItems.newItem"
+          v-model="this.newItems.newPercent"
           class="todo-input"
-          :placeholder=item
-        >
-        <input type="text" 
-          v-model="newItems.newPercent"
-          class="todo-input"
-          :placeholder=percent
         >
         <button 
           class="todo-update-btn"
-          @click="updateItem(this.item)"
+          @click="updateItem(this.item, this.percent)"
         >
           수정
         </button>
@@ -41,9 +38,22 @@ export default {
       };
     },
     methods: {
-        updateItem(item) {
-            const newItems = this.newItems;
+        updateItem(item, percent) {
+          const newItems = this.newItems;
+          // 둘다 값이 있을때
+          if ((newItems.newItem !== '') && (newItems.newPercent !== '')) {
             this.$store.commit("updateOneItem", { item, newItems });
+          } 
+          else if (newItems.newPercent !== '') {
+            newItems.newItem = item;
+            this.$store.commit("updateOneItem", { item, newItems });
+          }
+          // 둘다 값이 없을때
+          else {
+            newItems.newItem = item;
+            newItems.newPercent = percent;
+            alert('변경사항이 없습니다.');
+          }
         }
     }
 }
@@ -68,7 +78,7 @@ export default {
 }
 
 .todo-input {
-  width: 40%;
+  width: 80%;
   margin: 10px;
   padding: 10px;
   border: none;

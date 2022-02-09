@@ -48,7 +48,6 @@ export default {
   setup() {
     const isActive = ref(true);
     const editItem = ref({});
-
     return {
       isActive,
       editItem,

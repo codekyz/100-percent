@@ -1,8 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import TodoView from '../views/TodoView';
-import TimerView from '../views/TimerView';
 
 const routes = [
+    {
+        path: "/100-percent",
+        redirect: '/100-percent/Todo',
+    },
     {
         path: "/",
         redirect: '/Todo',
@@ -11,11 +14,6 @@ const routes = [
         path: "/todo",
         name: 'todo',
         component: TodoView,
-    },
-    {
-        path: "/timer",
-        name: 'timer',
-        component: TimerView,
     },
 ];
 
